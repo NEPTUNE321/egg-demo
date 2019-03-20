@@ -23,6 +23,10 @@ module.exports = (options, app) => {
         ctx.body = { code: 50012, msg: '登录状态已过期' };
       }
     } else {
+      if (ctx.url === '/swagger.json') {
+        await next();
+        return;
+      }
       ctx.body = { code: 50008, msg: '请登陆后再进行操作' };
     }
   };
